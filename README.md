@@ -1,76 +1,176 @@
-# Building a FastAPI Web Server to Stream Video from Camera
+📌 Real-Time Video Event Detection System using Python & OpenCV 📖 Overview
 
-This Python script implements a FastAPI-based web server for streaming video from various camera sources. It utilizes OpenCV for video capture and processing and employs asynchronous programming for efficient frame generation. The script defines a Camera class for thread-safe video capture and includes two main endpoints: one for continuous video streaming and another for single-frame snapshots. The server uses a lifespan context manager for proper resource handling, ensuring the camera is released on shutdown. The main function configures and runs a Uvicorn server to serve the FastAPI application. The script is flexible, allowing for different camera sources (local webcams, IP cameras), and can be easily adapted for various video streaming needs in web applications.
+This project is a real-time computer vision system built using Python, OpenCV, and FastAPI. It processes live video streams (webcam or camera feed), detects motion events from video frames, and streams detection events to connected clients in real time using WebSockets. All detected events are also stored in a SQLite database for later analysis.
 
-![image](https://github.com/user-attachments/assets/643c9095-67a9-44b6-92db-f1f508236be2)
+The project demonstrates key concepts such as:
 
-![image](https://github.com/user-attachments/assets/6a3865fe-5423-40f6-b1c3-aa66277e97d9)
+Real-time frame processing
 
-## Features
+Computer vision pipelines
 
-- Stream video from local webcams or IP cameras
-- Capture and serve individual snapshots
-- Asynchronous frame generation for efficient streaming
-- Thread-safe camera access
-- Graceful shutdown and resource management
+Event-driven architecture
 
-## Requirements
+Backend communication using WebSockets
 
-- Python 3.7+
-- FastAPI
-- OpenCV (cv2)
-- uvicorn
+Structured data storage
 
-## Installation
+This system is designed as a learning-oriented but production-style prototype, closely aligned with real-world vision-based backend systems.
 
-1. Clone this repository:
-   ```
-   git clone https://github.com/yourusername/fastapi-video-streaming.git
-   cd fastapi-video-streaming
-   ```
+🚀 Features
 
-2. Install the required packages:
-   ```
-   pip install fastapi opencv-python-headless uvicorn
-   ```
+🎥 Live video streaming using OpenCV
 
-## Usage
+🧠 Motion detection using frame differencing
 
-1. Modify the camera initialization in the `__main__` section of the script:
+⚡ Real-time event generation (MOTION_DETECTED)
 
-   ```python
-   # For local webcam:
-   camera = Camera()
+🔌 WebSocket-based real-time event streaming
 
-   # For a specific camera index:
-   camera = Camera(0)
+🗃 Event logging into SQLite database
 
-   # For an IP camera:
-   camera = Camera('rtsp://user:password@ip_address:port/')
-   ```
+🧩 Modular and clean Python code structure
 
-2. Run the server:
-   ```
-   python fastapi_video_server.py
-   ```
+📊 Simple frontend to visualize live events
 
-3. Access the video stream in your browser or video player:
-   - Video stream: `http://localhost:8000/video`
-   - Snapshot: `http://localhost:8000/snapshot`
+🛠 Tech Stack
 
-## API Endpoints
+Language: Python
 
-- `/video`: Returns a continuous stream of JPEG frames
-- `/snapshot`: Returns a single JPEG frame
+Computer Vision: OpenCV
 
-## Configuration
+Backend Framework: FastAPI
 
-The server runs on `0.0.0.0:8000` by default. To change this, modify the `uvicorn.Config` parameters in the `main()` function.
+Real-time Communication: WebSockets
 
-## License
+Database: SQLite
 
-[MIT License](LICENSE)
+Version Control: Git
 
-## Contributing
+🏗 System Architecture
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Camera / Video Stream
+
+    ↓
+Frame Capture (OpenCV)
+
+    ↓
+Image Processing Pipeline
+
+    ↓
+Motion Detection Logic
+
+    ↓
+Event Generator
+
+    ↓
+┌───────────────┬────────────────┐
+
+WebSocket Stream Database Logger Live Video Output
+
+📂 Project Structure project/ │
+
+├── main.py # FastAPI app & video stream
+
+├── motion.py # Motion detection logic
+
+├── websocket.py # WebSocket event handling
+
+├── database.py # SQLite database operations
+
+│
+
+├── templates/
+
+│ └── index.html # Simple frontend UI
+
+│
+
+├── static/ # Static assets (if any)
+
+├── events.db # SQLite database
+
+├── requirements.txt
+
+├── README.md
+
+└── screenshots/
+
+⚙️ Installation & Setup 1️⃣ Clone the Repository git clone https://github.com/YOUR_USERNAME/FastAPI-OpenCV-Real-Time-Video-Streaming-with-WebSocket-Extension-.git cd FastAPI-OpenCV-Real-Time-Video-Streaming-with-WebSocket-Extension-
+
+2️⃣ Create Virtual Environment python -m venv venv
+
+Activate:
+
+Windows
+venv\Scripts\activate
+
+Linux / Mac
+source venv/bin/activate
+
+3️⃣ Install Dependencies pip install -r requirements.txt
+
+4️⃣ Run the Application uvicorn main:app --reload
+
+5️⃣ Open in Browser
+
+Video Stream:
+
+http://127.0.0.1:8000
+
+WebSocket Endpoint:
+
+ws://127.0.0.1:8000/ws/events
+
+📡 WebSocket Event Format
+
+When motion is detected, the system sends a real-time JSON event:
+
+{ "event": "MOTION_DETECTED", "timestamp": "2026-01-07 14:45:32" }
+
+🗄 Database Schema
+
+Table: events
+
+Column Type Description
+
+id INTEGER Primary key
+
+event TEXT Event type
+
+timestamp TEXT Detection timestamp
+
+🎯 Learning Outcomes
+
+Understanding real-time video pipelines
+
+Hands-on experience with OpenCV image processing
+
+Working with FastAPI and WebSockets
+
+Designing event-driven backend systems
+
+Managing latency, frames, and throughput
+
+Writing clean and modular Python code
+
+🔮 Future Enhancements
+
+Object detection using YOLO
+
+Kafka-based message queue integration
+
+RTSP camera support
+
+Performance optimization (async + multiprocessing)
+
+Dashboard with analytics
+
+Docker containerization
+
+👨‍💻 Author
+
+Rajeshwar Bura Python | Computer Vision | Backend Development
+
+⭐ Final Note
+
+This project was built to simulate a real-world vision-based real-time system, focusing on fundamentals, scalability concepts, and clean architecture rather than heavy models. It reflects strong alignment with computer vision intern roles involving backend integrations and real-time data processing.
