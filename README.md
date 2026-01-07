@@ -95,7 +95,12 @@ WebSocket Stream Database Logger Live Video Output
 
 └── screenshots/
 
-⚙️ Installation & Setup 1️⃣ Clone the Repository git clone https://github.com/YOUR_USERNAME/FastAPI-OpenCV-Real-Time-Video-Streaming-with-WebSocket-Extension-.git cd FastAPI-OpenCV-Real-Time-Video-Streaming-with-WebSocket-Extension-
+⚙️ Installation & Setup 
+
+1️⃣ Clone the Repository git clone https://github.com/YOUR_USERNAME/FastAPI-OpenCV-Real-Time-Video-Streaming-with-WebSocket-Extension-.git
+
+cd FastAPI-OpenCV-Real-Time-Video-Streaming-with-WebSocket-Extension-
+
 
 2️⃣ Create Virtual Environment python -m venv venv
 
