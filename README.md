@@ -1,0 +1,2 @@
+# FastAPI-OpenCV-Real-Time-Video-Streaming-with-WebSocket-Extension
+Developed a real-time computer vision backend using Python, OpenCV, and FastAPI to process live video streams. Implemented motion detection on frame-level data and designed an event-driven pipeline using WebSockets for real-time notifications. Detection events were logged into an SQLite database to demonstrate backend integration and data handling
